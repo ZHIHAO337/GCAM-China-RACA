@@ -1,0 +1,36 @@
+{
+  "status": "original_creation_content_restored_and_verified",
+  "rows_checked": 5952,
+  "sha256": "b6323ce5d619f6cd86050618a9587c0598b7b84777fc88ebdd0c7e742c8a4a49",
+  "max_absolute_errors": {
+    "delta_peak": 1.3877787807814457e-16,
+    "derate_pv": 2.220446049250313e-16,
+    "derate_wind": 2.220446049250313e-16,
+    "derate_hydro": 3.3306690738754696e-16,
+    "derate_thermal": 1.6653345369377348e-16,
+    "trade_loss": 1.6653345369377348e-16,
+    "climate_amplification": 4.440892098500626e-16,
+    "equivalent_reserve_margin": 5.273559366969494e-16
+  },
+  "provenance": {
+    "recovered_at": "2026-11-04",
+    "status": "original_creation_text_restored_from_archived_record",
+    "path": "config/model_assumptions.json",
+    "kind": {
+      "type": "add"
+    },
+    "text_truncated": false,
+    "scope": "Original creation text; not a newly calibrated configuration. Only risk_levels and baseline_reserve_margin are consumed by the formal climate-risk builder. Legacy storage_pathways and climate_amplification_proxy must not override the active reviewer_optimized_design.json or ERA5/CMIP6-derived hazards.",
+    "empirical_calibration_status": "Historical provenance recovered; independent provincial generator/transmission impact calibration remains unestablished."
+  },
+  "active_climate_builder_fields": [
+    "risk_levels",
+    "baseline_reserve_margin"
+  ],
+  "legacy_fields_not_reactivated": [
+    "climate_amplification_proxy",
+    "storage_pathways"
+  ],
+  "active_storage_configuration": "config/reviewer_optimized_design.json",
+  "empirically_calibrated_by_this_recovery": false
+}

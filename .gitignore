@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.env.*
+reproduction_check.json
+outputs/v19/adequacy/
+outputs/v19/ssp245/adequacy/
+outputs/v19/ssp585/adequacy/
