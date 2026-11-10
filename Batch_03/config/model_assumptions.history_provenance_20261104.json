@@ -1,0 +1,11 @@
+{
+  "recovered_at": "2026-11-04",
+  "status": "original_creation_text_restored_from_archived_record",
+  "path": "config/model_assumptions.json",
+  "kind": {
+    "type": "add"
+  },
+  "text_truncated": false,
+  "scope": "Original creation text; not a newly calibrated configuration. Only risk_levels and baseline_reserve_margin are consumed by the formal climate-risk builder. Legacy storage_pathways and climate_amplification_proxy must not override the active reviewer_optimized_design.json or ERA5/CMIP6-derived hazards.",
+  "empirical_calibration_status": "Historical provenance recovered; independent provincial generator/transmission impact calibration remains unestablished."
+}
