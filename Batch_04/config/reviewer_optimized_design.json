@@ -1,0 +1,101 @@
+{
+  "model_version": "reviewer_optimized_v3",
+  "climate_scenarios": ["ssp245", "ssp585"],
+  "model_years": [2025, 2030, 2035, 2040, 2045, 2050, 2055, 2060],
+  "baseline_reserve_margin": 0.15,
+  "observed_capacity_anchor_2024_gw": {
+    "hydro": 435.95,
+    "thermal_including_nuclear": 1505.28,
+    "wind": 520.68,
+    "solar": 886.66,
+    "source": "https://www.nea.gov.cn/20250121/097bfd7c1cd3498897639857d86d5dac/c.html",
+    "interpretation": "2024 year-end observed national capacity anchors applied once to the nearest 2025 GCAM node"
+  },
+  "risk_application": {
+    "peak_segment": "full_conditional_event_derate",
+    "nonpeak_rapid_event": "conditional_derate_times_event_hours_divided_by_8760",
+    "nonpeak_hydro_drought": "conditional_derate_times_drought_hours_divided_by_8760",
+    "hydro_drought_duration_days": {"R0": 0, "R10": 30, "R20": 60, "R50": 120},
+    "internal_reserve_margin": "retain_native_0.15_to_avoid_historical_period_contamination",
+    "external_adequacy": "node_specific_equivalent_reserve_requirement_and_firm_capacity_stress_test"
+  },
+  "risk_event_duration_hours": {"R0": 0, "R10": 6, "R20": 12, "R50": 24},
+  "storage": {
+    "durations_hours": [2, 4, 8, 10],
+    "round_trip_efficiency": 0.85,
+    "availability": 0.95,
+    "observed_2025_power_gw": 136.0,
+    "observed_2025_energy_gwh": 351.0,
+    "observed_2025_equivalent_utilization_hours": 1195.0,
+    "observed_2025_source": "https://www.nea.gov.cn/20260130/50f657ce87f848e1a9a1861d1fd9aa23/c.html",
+    "official_2027_power_target_gw": 180.0,
+    "official_2027_source": "https://www.nea.gov.cn/20250912/73455a1a61b248d4aef65cc124631398/2025091273455a1a61b248d4aef65cc124631398_358225d8906a1840e98ffbbfcbac506bab.pdf",
+    "national_power_targets_gw": {
+      "S0_BASE": {"2025": 136.0, "2030": 196.7, "2035": 228.0, "2040": 264.3, "2045": 306.4, "2050": 355.2, "2055": 411.8, "2060": 477.4},
+      "S1_ORDERLY": {"2025": 136.0, "2030": 208.4, "2035": 265.9, "2040": 339.4, "2045": 433.2, "2050": 552.9, "2055": 705.7, "2060": 900.6},
+      "S2_ACCELERATED": {"2025": 136.0, "2030": 220.5, "2035": 309.3, "2040": 433.9, "2045": 608.6, "2050": 853.7, "2055": 1197.5, "2060": 1679.8}
+    },
+    "target_interpretation": "2025 observed anchor; 2030-2060 policy-constrained scenarios extrapolated from the official 2027 180 GW target at 3, 5 and 7 percent annual growth",
+    "grid_region_power_shares_2024": {
+      "North China Grid": 0.301,
+      "Northwest China Grid": 0.254,
+      "East China Grid": 0.169,
+      "Central China Grid": 0.147,
+      "China Southern Power Grid": 0.124,
+      "Northeast China Grid": 0.005
+    },
+    "grid_region_share_source": "https://henb.nea.gov.cn/hdhy/zlxz/202509/P020250902642899570332.pdf",
+    "technology_power_share_2025": {"2": 0.724, "4": 0.270, "8": 0.004, "10": 0.002},
+    "technology_power_share_2060": {
+      "S0_BASE": {"2": 0.40, "4": 0.45, "8": 0.10, "10": 0.05},
+      "S1_ORDERLY": {"2": 0.20, "4": 0.40, "8": 0.25, "10": 0.15},
+      "S2_ACCELERATED": {"2": 0.10, "4": 0.25, "8": 0.35, "10": 0.30}
+    },
+    "equivalent_utilization_hours_2060": {"S0_BASE": 1100.0, "S1_ORDERLY": 1300.0, "S2_ACCELERATED": 1500.0},
+    "technology_share_interpolation": "linear_from_common_2025_mix_to_pathway_2060_mix",
+    "utilization_interpolation": "linear_from_observed_2025_to_pathway_2060"
+  },
+  "external_capacity_credit": {
+    "thermal": 0.90,
+    "hydro": 0.50,
+    "wind": 0.10,
+    "solar": 0.05,
+    "other": 0.50,
+    "storage": "min(1,duration/event_duration)*availability"
+  },
+  "load_factor": 0.60,
+  "adequacy": {
+    "calibration_scope": "technology_specific_2024_observed_national_capacity_anchor_fixed_after_2025",
+    "baseline_transfer_support": "maximum_of_observed_2021_net_import_support_and_r0s0_residual_local_gap",
+    "event_transfer_availability": "one_minus_trade_loss",
+    "material_shortfall_threshold": 0.05,
+    "severe_shortfall_threshold": 0.20
+  },
+  "representative_event": {
+    "hours": 168,
+    "initial_storage_soc_fraction": 0.90,
+    "minimum_storage_soc_fraction": 0.10,
+    "terminal_storage_soc_fraction": 0.10,
+    "round_trip_efficiency": 0.85,
+    "dispatch_scope": "province_specific_conditional_event_without_interprovincial_network_flow",
+    "profile_status": "reproducible_hourly_disaggregation_of_era5_daily_extreme_week_with_12_or_24_hour_conditional_shock_not_observed_hourly_load"
+  },
+  "sensitivity": {
+    "samples": 1000,
+    "seed": 20260825,
+    "load_factor": [0.55, 0.65],
+    "reserve_margin": [0.12, 0.20],
+    "thermal_firm_credit": [0.82, 0.95],
+    "hydro_firm_credit": [0.35, 0.65],
+    "wind_firm_credit": [0.05, 0.20],
+    "solar_firm_credit": [0.02, 0.12],
+    "storage_availability": [0.85, 0.98],
+    "storage_scale_multiplier": [0.80, 1.20],
+    "storage_duration_multiplier": [0.75, 1.50],
+    "event_duration_multiplier": [0.75, 1.50],
+    "climate_ensemble_quantile": [0.10, 0.90],
+    "impact_mapping_multiplier": [0.80, 1.20],
+    "transfer_availability_multiplier": [0.75, 1.00]
+  },
+  "method_status": "reviewer_optimized_v3_dual_climate_gcam_observed_capacity_anchor_transfer_support_event_dispatch_and_global_sensitivity"
+}
